@@ -2,19 +2,17 @@
 -- Q1.Which product categories generate the highest revenue?
 SELECT
     pct.product_category_name_english AS Category,
-    ROUND(SUM(op.payment_value), 2) AS Total_Revenue
+    ROUND(SUM(oi.price), 2) AS Total_Revenue
 FROM olist_order_items_dataset oi
 JOIN olist_products_dataset pr
     ON oi.product_id = pr.product_id
 JOIN product_category_name_translation pct
     ON pr.product_category_name = pct.product_category_name
-JOIN olist_order_payments_dataset op
-    ON oi.order_id = op.order_id
 GROUP BY pct.product_category_name_english
 ORDER BY Total_Revenue DESC;
 /* Business Insight
-- Bed, Bath & Table generated the highest revenue (£1.71M), followed by Health & Beauty and
-Computers & Accessories.
+- Health & Beauty generated the highest revenue (R$1.25M), followed by Watches & Gifts and
+Bed, Bath & Table.
 - These categories are the primary revenue drivers and should be prioritized for inventory and
 promotional campaigns. */
 
@@ -30,23 +28,21 @@ ORDER BY Total_Orders DESC;
 - The top 10 products have strong repeat demand and should be prioritized for inventory planning.*/
 
 -- Intermediate
--- Q3.Which product categories have generated more than £500,000 in revenue?
+-- Q3.Which product categories have generated more than R$500,000 in revenue?
 SELECT
     pct.product_category_name_english AS Category,
-    ROUND(SUM(op.payment_value),2) AS Total_Revenue
+    ROUND(SUM(oi.price), 2) AS Total_Revenue
 FROM olist_order_items_dataset oi
 JOIN olist_products_dataset pr
     ON oi.product_id = pr.product_id
 JOIN product_category_name_translation pct
     ON pr.product_category_name = pct.product_category_name
-JOIN olist_order_payments_dataset op
-    ON oi.order_id = op.order_id
 GROUP BY pct.product_category_name_english
-HAVING SUM(op.payment_value) > 500000
+HAVING SUM(oi.price) > 500000
 ORDER BY Total_Revenue DESC;
 /* Business Insight
-- 14 product categories generated over £500K in revenue.
-- Bed, Bath & Table, Health & Beauty, and Computers & Accessories
+- 9 product categories generated over R$500K in revenue.
+-  Health & Beauty,Watches & gifts,Bed, Bath & Table, and Sports leisure
 are the top revenue-generating categories. */
 
 -- Q4.What is the average selling price of products in each category?
@@ -61,7 +57,7 @@ JOIN product_category_name_translation pct
 GROUP BY pct.product_category_name_english
 ORDER BY Avg_Product_Price DESC;
 /* Business Insight
-- Computers have the highest average selling price (£1,098.34), 
+- Computers have the highest average selling price (R$1,098.34), 
 followed by Small Appliances and Home Appliances.
 - Premium-priced categories contribute higher revenue per sale, 
 while lower-priced categories rely on higher sales volume. */
