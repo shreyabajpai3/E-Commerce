@@ -4,7 +4,7 @@ SELECT COUNT(DISTINCT customer_unique_id) AS Total_Customers
 FROM olist_customers_dataset;
 
 -- Q2 How many customers placed more than one order?
-SELECT TOP 10
+SELECT
     c.customer_unique_id,
     COUNT(o.order_id) AS Total_Orders
 FROM olist_customers_dataset c
@@ -18,10 +18,10 @@ ORDER BY Total_Orders DESC;
 relatively low repeat purchase rate.
 - Most customers purchased only once, suggesting customer retention is a key opportunity.
 - A small group of highly loyal customers generated multiple orders and should be targeted 
-with loyalty initiatives.
+with loyalty initiatives.*/
 
 -- Intermediate
--- Q3. Who are the top 10 customers based on total spending?*/
+-- Q3. Who are the top 10 customers based on total spending?
 SELECT TOP 10
     c.customer_unique_id,
     COUNT(DISTINCT o.order_id) AS Total_Orders,
@@ -35,7 +35,7 @@ JOIN olist_order_items_dataset oi
 GROUP BY c.customer_unique_id
 ORDER BY Total_Spent DESC;
 /* Business Insight
-- The highest-spending customer generated 13,440 in revenue from a single order.
+- The highest-spending customer generated R$13,440 in revenue from a single order.
 - Most of the top 10 customers made only one purchase, indicating that high revenue 
 is driven by high-value transactions rather than repeat buying.
 - Only one customer in the top 10 placed more than one order, highlighting an
