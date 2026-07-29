@@ -3,14 +3,14 @@ SELECT
     SUM(payment_value) AS Total_Revenue
 FROM olist_order_payments_dataset;
 --- Business Insight:
--- The business generated total revenue of 16,008,872.12.
+-- The business generated total revenue of R$16,008,872.12.
 
 -- Q2.What is the average order value?
 SELECT
     AVG(payment_value) AS Average_Order_Value
 FROM olist_order_payments_dataset;
 --- Business Insight:
--- Customers spent an average of 154.10 per payment.
+-- Customers spent an average of R$154.10 per payment.
 
 -- Q3.How has the monthly revenue changed over time?
 SELECT
