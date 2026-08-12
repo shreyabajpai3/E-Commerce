@@ -155,4 +155,5 @@ An interactive 3-page Power BI dashboard built on top of the same SQL-modeled da
 ## Author
 
 **Shreya Bajpai**
+
 Aspiring Data Analyst | SQL | Python | Power BI
