@@ -1,0 +1,56 @@
+Normalized Olist E-Commerce Schema (7 Tables)
+1. Customers
+Customer_ID VARCHAR(50) PRIMARY KEY,
+Customer_Unique_ID VARCHAR(50),
+Customer_Zip_Code_Prefix INT,
+Customer_City VARCHAR(100),
+Customer_State CHAR(2)
+
+2. Orders
+Order_ID VARCHAR(50) PRIMARY KEY,
+Customer_ID VARCHAR(50) FOREIGN KEY REFERENCES Customers(Customer_ID),
+Order_Status VARCHAR(30),
+Order_Purchase_Timestamp DATETIME,
+Order_Approved_At DATETIME,
+Order_Delivered_Carrier_Date DATETIME,
+Order_Delivered_Customer_Date DATETIME,
+Order_Estimated_Delivery_Date DATETIME
+
+3. Order_Items
+Order_ID VARCHAR(50) FOREIGN KEY REFERENCES Orders(Order_ID),
+Order_Item_ID INT,
+Product_ID VARCHAR(50) FOREIGN KEY REFERENCES Products(Product_ID),
+Seller_ID VARCHAR(50) FOREIGN KEY REFERENCES Sellers(Seller_ID),
+Shipping_Limit_Date DATETIME,
+Price DECIMAL(10,2),
+Freight_Value DECIMAL(10,2),
+PRIMARY KEY (Order_ID, Order_Item_ID)
+
+4. Payments
+Order_ID VARCHAR(50) FOREIGN KEY REFERENCES Orders(Order_ID),
+Payment_Sequential INT,
+Payment_Type VARCHAR(30),
+Payment_Installments INT,
+Payment_Value DECIMAL(10,2),
+PRIMARY KEY (Order_ID, Payment_Sequential)
+
+5. Products
+Product_ID VARCHAR(50) PRIMARY KEY,
+Product_Category_Name VARCHAR(100),
+Product_Name_Length INT,
+Product_Description_Length INT,
+Product_Photos_Qty INT,
+Product_Weight_g INT,
+Product_Length_cm INT,
+Product_Height_cm INT,
+Product_Width_cm INT
+
+6. Sellers
+Seller_ID VARCHAR(50) PRIMARY KEY,
+Seller_Zip_Code_Prefix INT,
+Seller_City VARCHAR(100),
+Seller_State CHAR(2)
+
+7. Product_Category_Translation
+Product_Category_Name VARCHAR(100) PRIMARY KEY,
+Product_Category_Name_English VARCHAR(100)
